@@ -36,7 +36,7 @@ def populateLibrary():
     Lib.addRoad(ImageFile(Image.open("./pics/roads/island_kitti.jpg"), "Island Road"), coord(616, 179), coord(386, 315),coord(864, 315), [coord(607, 315)])     #59
     Lib.addRoad(ImageFile(Image.open("./pics/roads/countryside_kitti.jpg"), "Country Road"), coord(627, 146), coord(462, 306),coord(785, 306), [coord(621, 306)])   # 60
     Lib.addRoad(ImageFile(Image.open("./pics/roads/hill_kitti.jpg"), "Hill Road"), coord(613, 166),coord(382, 314), coord(846, 314), [coord(617, 314)])         # 61
-
+    Lib.addRoad(ImageFile(Image.open("./pics/roads/alps_kitti.png"), "Alps Road"), coord(613, 166),coord(382, 314), coord(846, 314), [coord(617, 314)])
 
 
 
@@ -54,5 +54,6 @@ def populateLibrary():
     Lib.addCar(ImageFile(Image.open("./pics/cars/toyota_kitti.png"), "Toyota Kitti"))
     Lib.addCar(ImageFile(Image.open("./pics/cars/peugeot_kitti.png"), "Peugeot Kitti"))         #10
     Lib.addCar(ImageFile(Image.open("./pics/cars/chrysler_kitti.png"), "Chrysler Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/honda_civic_front_kitti.png"), "Honda Civic Kitti"))
 
     return Lib
