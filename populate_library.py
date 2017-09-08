@@ -47,13 +47,24 @@ def populateLibrary():
     Lib.addCar(ImageFile(Image.open("./pics/cars/suzuki_rear.png"), "Suzuki"))
     Lib.addCar(ImageFile(Image.open("./pics/cars/modified_bmw.png"), "Modified BMW"))
     Lib.addCar(ImageFile(Image.open("./pics/cars/bmw_kitti.png"), "BMW Kitti"))
-    Lib.addCar(ImageFile(Image.open("./pics/cars/suzuki_kitti.png"), "Suzuki Kitti"))           #5
+    Lib.addCar(ImageFile(Image.open("./pics/cars/suzuki_kitti.png"), "Suzuki Kitti"))                    #5
     Lib.addCar(ImageFile(Image.open("./pics/cars/tesla_kitti.png"), "Tesla Kitti"))
     Lib.addCar(ImageFile(Image.open("./pics/cars/fiat_kitti.png"), "Fiat Kitti"))
     Lib.addCar(ImageFile(Image.open("./pics/cars/honda_kitti.png"), "Honda Kitti"))
     Lib.addCar(ImageFile(Image.open("./pics/cars/toyota_kitti.png"), "Toyota Kitti"))
-    Lib.addCar(ImageFile(Image.open("./pics/cars/peugeot_kitti.png"), "Peugeot Kitti"))         #10
+    Lib.addCar(ImageFile(Image.open("./pics/cars/peugeot_kitti.png"), "Peugeot Kitti"))                  #10
     Lib.addCar(ImageFile(Image.open("./pics/cars/chrysler_kitti.png"), "Chrysler Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/bmw_blue_kitti.png"), "BMW Blue Kitti"))
+
     Lib.addCar(ImageFile(Image.open("./pics/cars/honda_civic_front_kitti.png"), "Honda Civic Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/toyota_camry_front_kitti.png"), "Toyota Camry Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/toyota_prius_front_kitti.png"), "Toyota Prius Kitti"))  #15
+    Lib.addCar(ImageFile(Image.open("./pics/cars/benz_front_kitti.png"), "Benz Mercedes Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/ford_front_kitti.png"), "Ford Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/jeep_front_kitti.png"), "Jeep Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/jeep_cherokee_front_kitti.png"), "Jeep Cherokee Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/fiat_front_kitti.png"), "Fiat Kitti"))                  #20
+    Lib.addCar(ImageFile(Image.open("./pics/cars/bmw_front_kitti.png"), "BMW Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/suzuki_front_kitti.png"), "Suzuki Kitti"))
 
     return Lib
