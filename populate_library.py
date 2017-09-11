@@ -29,7 +29,7 @@ def populateLibrary():
     Lib.addRoad(ImageFile(Image.open("./pics/roads/desert_kitti.png"), "Desert Road"), coord(621, 208), coord(336, 344), coord(920,344), [coord(618,344)])      #52
     Lib.addRoad(ImageFile(Image.open("./pics/roads/city_kitti.png"), "City Road"), coord(630, 150), coord(336, 344), coord(920,344), [coord(618,344)])          #53
     Lib.addRoad(ImageFile(Image.open("./pics/roads/forest_kitti.png"), "Forest Road"), coord(672, 238), coord(200, 430), coord(656,430), [coord(436,430)])      #54
-    Lib.addRoad(ImageFile(Image.open("./pics/roads/big_sur_kitti.jpg"), "Big Sur Road"), coord(746,90), coord(470, 268), coord(1072,268), [coord(753,268)])     #55
+    Lib.addRoad(ImageFile(Image.open("./pics/roads/big_sur_kitti.png"), "Big Sur Road"), coord(746,90), coord(470, 268), coord(1072,268), [coord(753,268)])     #55
     Lib.addRoad(ImageFile(Image.open("./pics/roads/mountain_kitti.jpg"), "Mountain Road"), coord(678,106), coord(330, 299), coord(960,299), [coord(635,960)])   #56
     Lib.addRoad(ImageFile(Image.open("./pics/roads/bridge_kitti.jpg"), "Bridge Road"), coord(627,105), coord(399, 254), coord(900,254), [coord(629,254)])       #57
     Lib.addRoad(ImageFile(Image.open("./pics/roads/tunnel_kitti.jpg"), "Tunnel Road"), coord(651, 163), coord(363, 328), coord(826, 328), [coord(622, 328)])    #58
