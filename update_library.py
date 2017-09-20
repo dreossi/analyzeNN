@@ -6,46 +6,60 @@ using the new implementation
 import pickle
 from cnn_image_generation.lib_obj import *
 
-road_images= [{'path':'./pics/roads/desert_kitti.png', \
-               'type':'Desert Road', 'id':52},
-              {'path':'./pics/roads/city_kitti.png',\
-               'type':'City Road', 'id':53},
-              {'path':'./pics/roads/forest_kitti.png',\
-               'type':'Forest Road', 'id':54},
-              {'path':'./pics/roads/big_sur_kitti.png',\
-               'type':'Big Sur Road', 'id':55},
-              {'path':'./pics/roads/mountain_kitti.jpg',\
-               'type':'Mountain Road', 'id':56},
-              {'path':'./pics/roads/bridge_kitti.jpg',\
-               'type':'Bridge Road', 'id':57},
-              {'path':'./pics/roads/tunnel_kitti.jpg',\
-               'type':'Tunnel Road', 'id':58},
-              {'path':'./pics/roads/island_kitti.jpg',\
-               'type':'Island Road', 'id':59},
-              {'path':'./pics/roads/countryside_kitti.jpg',\
-               'type':'CountrysideRoad', 'id':60},
-              {'path':'./pics/roads/hill_kitti.jpg',\
-               'type':'Hill Road', 'id':61},
-              {'path':'./pics/roads/alps_kitti.png',\
-               'type':'Alps Road', 'id':62},
-              {'path':'./pics/roads/bridge_1_kitti.png',\
-               'type':'Brisdge 1 Road', 'id':63},
-              {'path':'./pics/roads/building_kitti.png',\
-               'type':'Building Road', 'id':64},
-              {'path':'./pics/roads/cloud_kitti.png',\
-               'type':'Cloud Road', 'id':65},
-              {'path':'./pics/roads/downtown_kitti.png',\
-               'type':'Downtown Road', 'id':66},
-              {'path':'./pics/roads/freeway_kitti.png',\
-               'type':'Freeway Road', 'id':67},
-              {'path':'./pics/roads/track_kitti.jpg',\
-               'type':'Track Road', 'id':68},
-              {'path':'./pics/roads/rainforest_kitti.png',\
-               'type':'Rainforest Road', 'id':69},
-              {'path':'./pics/roads/tree_kitti.png',\
-               'type':'Tree Road', 'id':70},
-              {'path':'./pics/roads/trees_kitti.png',\
-               'type':'Trees Road', 'id':71}]
+road_images= [{'path':'./pics/roads/desert.jpg', \
+               'type':'Desert Road'},
+              {'path':'./pics/roads/countryside.jpg', \
+               'type':'Countryside Road'},
+              {'path':'./pics/roads/city.jpg', \
+               'type': 'City Road'},
+              {'path':'./pics/roads/cropped_desert.jpg', \
+               'type':' Cropped Desert Road'}]
+for i in range(134, 182):
+    road_images.append({'path':'./pics/roads/forest/0000000'\
+                               + str(i) + '.png', \
+                        'type':'Forest Road'})
+
+
+road_images.append({'path':'./pics/roads/desert_kitti.png', \
+               'type':'Desert Road', 'id':52})
+road_images.append({'path':'./pics/roads/city_kitti.png',\
+               'type':'City Road', 'id':53})
+road_images.append({'path':'./pics/roads/forest_kitti.png',\
+               'type':'Forest Road', 'id':54})
+road_images.append({'path':'./pics/roads/big_sur_kitti.png',\
+               'type':'Big Sur Road', 'id':55})
+road_images.append({'path':'./pics/roads/mountain_kitti.jpg',\
+               'type':'Mountain Road', 'id':56})
+road_images.append({'path':'./pics/roads/bridge_kitti.jpg',\
+               'type':'Bridge Road', 'id':57})
+road_images.append({'path':'./pics/roads/tunnel_kitti.jpg',\
+               'type':'Tunnel Road', 'id':58})
+road_images.append({'path':'./pics/roads/island_kitti.jpg',\
+               'type':'Island Road', 'id':59})
+road_images.append({'path':'./pics/roads/countryside_kitti.jpg',\
+               'type':'CountrysideRoad', 'id':60})
+road_images.append({'path':'./pics/roads/hill_kitti.jpg',\
+               'type':'Hill Road', 'id':61})
+road_images.append({'path':'./pics/roads/alps_kitti.png',\
+               'type':'Alps Road', 'id':62})
+road_images.append({'path':'./pics/roads/bridge_1_kitti.png',\
+               'type':'Brisdge 1 Road', 'id':63})
+road_images.append({'path':'./pics/roads/building_kitti.png',\
+               'type':'Building Road', 'id':64})
+road_images.append({'path':'./pics/roads/cloud_kitti.png',\
+               'type':'Cloud Road', 'id':65})
+road_images.append({'path':'./pics/roads/downtown_kitti.png',\
+               'type':'Downtown Road', 'id':66})
+road_images.append({'path':'./pics/roads/freeway_kitti.png',\
+               'type':'Freeway Road', 'id':67})
+road_images.append({'path':'./pics/roads/track_kitti.jpg',\
+               'type':'Track Road', 'id':68})
+road_images.append({'path':'./pics/roads/rainforest_kitti.png',\
+               'type':'Rainforest Road', 'id':69})
+road_images.append({'path':'./pics/roads/tree_kitti.png',\
+               'type':'Tree Road', 'id':70})
+road_images.append({'path':'./pics/roads/trees_kitti.png',\
+               'type':'Trees Road', 'id':71})
 
 car_images = [{'path':'./pics/cars/bmw_kitti.png', 'type':'BMW Kitti', \
                'id':0},
@@ -97,19 +111,23 @@ def update_library():
     with open(configs_file, 'rb') as f:
         configs = pickle.load(f)
 
-    i = 0
-    for elem in configs:
+
+    for i in range(len(road_images)):
+        elem = configs[i]
+        im_data = Image.open(road_images[i]['path'])
         if elem != []:
-            im_data = Image.open(road_images[i]['path'])
-            bounding_box = elem[0]
+            trapezoid = elem[0]
             scaling = elem[1]
-            create_bound = bb(bounding_box[0], bounding_box[1], bounding_box[2], \
-                              bounding_box[3])
+            create_bound = bb(trapezoid[0], trapezoid[1], trapezoid[2], \
+                              trapezoid[3])
             create_scale = scale(scaling[0], scaling[1])
-            Library.add_backgrounds(im_data=im_data,add_details=road_images[i], \
-                                    bounding_boxes = create_bound, \
+            Library.add_backgrounds(im_data=im_data, add_details=road_images[i], \
+                                    bounding_boxes=create_bound, \
                                     scale=create_scale)
-            i+=1
+        else:
+            Library.add_backgrounds(im_data=im_data, add_details=road_images[i])
+
+
 
     for car in car_images:
         im_data=Image.open(car['path'])
