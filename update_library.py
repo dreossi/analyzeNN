@@ -101,7 +101,7 @@ car_images = [{'path':'./pics/cars/bmw_kitti.png', 'type':'BMW Kitti', \
                'type': 'Suzuki Front Kitti', 'id':18}
               ]
 
-configs_file = 'scene_configs'
+configs_file = 'scene_configs_py2'
 
 convert_sample_to_int = lambda sample, num_elems:  int(sample*(num_elems+1))
 
