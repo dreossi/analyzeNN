@@ -25,11 +25,13 @@ from nets import *
 FLAGS = tf.app.flags.FLAGS
 
 tf.app.flags.DEFINE_string('mode', 'image', """'image' or 'video'.""")
-tf.app.flags.DEFINE_string('checkpoint', ROOT_PATH + 'data/model_checkpoints/squeezeDet/model.ckpt-87000',"""Path to the model parameter file.""")
+#tf.app.flags.DEFINE_string('checkpoint', ROOT_PATH + 'data/model_checkpoints/squeezeDet/model.ckpt-87000',"""Path to the model parameter file.""")
+tf.app.flags.DEFINE_string('checkpoint', str('/home/tommaso/checkpoint/10000_0/train/model.ckpt-5000'),"""Path to the model parameter file.""")
 
 def init():
 
   with tf.Graph().as_default():
+
     # Load model
     mc = kitti_squeezeDet_config()
     mc.BATCH_SIZE = 1
