@@ -130,4 +130,13 @@ def base_model_config(dataset='PASCAL_VOC'):
   # default value here is the same with caffe's default value.
   cfg.BATCH_NORM_EPSILON = 1e-5
 
+  # number of threads to fetch data
+  cfg.NUM_THREAD = 4
+
+  # capacity for FIFOQueue
+  cfg.QUEUE_CAPACITY = 100
+
+  # indicate if the model is in training mode
+  cfg.IS_TRAINING = False
+
   return cfg

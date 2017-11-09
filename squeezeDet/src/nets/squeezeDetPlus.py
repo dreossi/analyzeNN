@@ -17,7 +17,7 @@ import tensorflow as tf
 from nn_skeleton import ModelSkeleton
 
 class SqueezeDetPlus(ModelSkeleton):
-  def __init__(self, mc, gpu_id):
+  def __init__(self, mc, gpu_id=0):
     with tf.device('/gpu:{}'.format(gpu_id)):
       ModelSkeleton.__init__(self, mc)
 
@@ -78,7 +78,8 @@ class SqueezeDetPlus(ModelSkeleton):
         'conv12', dropout11, filters=num_output, size=3, stride=1,
         padding='SAME', xavier=False, relu=False, stddev=0.0001)
 
-  def _fire_layer(self, layer_name, inputs, s1x1, e1x1, e3x3, freeze=False):
+  def _fire_layer(self, layer_name, inputs, s1x1, e1x1, e3x3, stddev=0.01,
+      freeze=False):
     """Fire layer constructor.
 
     Args:
@@ -94,12 +95,12 @@ class SqueezeDetPlus(ModelSkeleton):
 
     sq1x1 = self._conv_layer(
         layer_name+'/squeeze1x1', inputs, filters=s1x1, size=1, stride=1,
-        padding='SAME', freeze=freeze)
+        padding='SAME', stddev=stddev, freeze=freeze)
     ex1x1 = self._conv_layer(
         layer_name+'/expand1x1', sq1x1, filters=e1x1, size=1, stride=1,
-        padding='SAME', freeze=freeze)
+        padding='SAME', stddev=stddev, freeze=freeze)
     ex3x3 = self._conv_layer(
         layer_name+'/expand3x3', sq1x1, filters=e3x3, size=3, stride=1,
-        padding='SAME', freeze=freeze)
+        padding='SAME', stddev=stddev, freeze=freeze)
 
     return tf.concat([ex1x1, ex3x3], 3, name=layer_name+'/concat')
