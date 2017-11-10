@@ -2,8 +2,8 @@
 
 export GPUID=0
 export NET="squeezeDet"
-export EVAL_DIR="/tmp/bichen/logs/SqueezeDet/"
-export IMAGE_SET="val_synth"
+export EVAL_DIR="/tmp/bichen/logs/SqueezeDet"
+export IMAGE_SET="test_50"
 export CHK_PT="/tmp/bichen/logs/SqueezeDet/train/"
 
 if [ $# -eq 0 ]
@@ -93,4 +93,4 @@ done
   	--eval_dir="$EVAL_DIR/$IMAGE_SET" \
   	--checkpoint_path="$CHK_PT" \
   	--net=$NET \
-  	--gpu=$GPUI
+  	--gpu=$GPUID

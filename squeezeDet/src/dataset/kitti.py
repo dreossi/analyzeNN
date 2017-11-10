@@ -15,8 +15,8 @@ class kitti(imdb):
     imdb.__init__(self, 'kitti_'+image_set, mc)
     self._image_set = image_set
     self._data_root_path = data_path
-    self._image_path = os.path.join(self._data_root_path, 'training', 'image_2')
-    self._label_path = os.path.join(self._data_root_path, 'training', 'label_2')
+    self._image_path = os.path.join(self._data_root_path, 'training', 'images')
+    self._label_path = os.path.join(self._data_root_path, 'training', 'labels')
     self._classes = self.mc.CLASS_NAMES
     self._class_to_idx = dict(zip(self.classes, xrange(self.num_classes)))
 

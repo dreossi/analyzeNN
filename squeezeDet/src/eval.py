@@ -91,10 +91,10 @@ def eval_once(
           all_boxes[c][i].append(bbox_transform(b) + [s])
       _t['misc'].toc()
 
-    #   print ('im_detect: {:d}/{:d} im_read: {:.3f}s '
-    #          'detect: {:.3f}s misc: {:.3f}s'.format(
-    #             i+1, num_images, _t['im_read'].average_time,
-    #             _t['im_detect'].average_time, _t['misc'].average_time))
+      print ('im_detect: {:d}/{:d} im_read: {:.3f}s '
+             'detect: {:.3f}s misc: {:.3f}s'.format(
+                i+1, num_images, _t['im_read'].average_time,
+                _t['im_detect'].average_time, _t['misc'].average_time))
 
     print ('Evaluating detections...')
     aps, ap_names = imdb.evaluate_detections(
