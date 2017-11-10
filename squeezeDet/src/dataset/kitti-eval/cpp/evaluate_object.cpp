@@ -664,6 +664,7 @@ bool eval(string const & result_dir, string const & image_set_filename, string c
 
   // get image names
   FILE *fp = fopen( image_set_filename.c_str(),"r" );
+  printf("THE ");
   if (!fp) {
     mail->msg("ERROR: Couldn't read: image set file %s!", image_set_filename.c_str() );
     return false;
@@ -791,7 +792,7 @@ int32_t main (int32_t argc,char *argv[]) {
 
   // read arguments
   string const kitti_dir          = argv[1];
-  string const gt_dir             = ospj( kitti_dir, "label_2" ); // FIXME_MWM: should be part of input? configurable?
+  string const gt_dir             = ospj( kitti_dir, "labels" ); // FIXME_MWM: should be part of input? configurable?
   string const image_set_filename = argv[2];
   string const result_dir         = argv[3];
   int32_t const N_TESTIMAGES      = atoi(argv[4]);
