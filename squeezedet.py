@@ -26,9 +26,9 @@ FLAGS = tf.app.flags.FLAGS
 
 tf.app.flags.DEFINE_string('mode', 'image', """'image' or 'video'.""")
 #tf.app.flags.DEFINE_string('checkpoint', ROOT_PATH + 'data/model_checkpoints/squeezeDet/model.ckpt-87000',"""Path to the model parameter file.""")
-tf.app.flags.DEFINE_string('checkpoint', str('/home/tommaso/checkpoint/10000_0/train/model.ckpt-5000'),"""Path to the model parameter file.""")
+tf.app.flags.DEFINE_string('checkpoint', str('/home/tommaso/Desktop/logs/SqueezeDet/train/model.ckpt-2000'),"""Path to the model parameter file.""")
 
-def init():
+def init(checkpoint_path):
 
   with tf.Graph().as_default():
 
@@ -38,7 +38,9 @@ def init():
     # model parameters will be restored from checkpoint
     mc.LOAD_PRETRAINED_MODEL = False
     model = SqueezeDet(mc, FLAGS.gpu)
-
+    
+    FLAGS.checkpoint = str(checkpoint_path)
+    
     # Start tensorflow session
     saver = tf.train.Saver(model.model_params)
     sess = tf.Session(config=tf.ConfigProto(allow_soft_placement=True))
@@ -50,7 +52,7 @@ def init():
 
 def classify(im_path,conf):
 
-    (sess,mc,model) = conf;
+    (sess,mc,model) = conf
     im = cv2.imread(im_path)
     im = im.astype(np.float32, copy=False)
     im = cv2.resize(im, (mc.IMAGE_WIDTH, mc.IMAGE_HEIGHT))
@@ -58,8 +60,8 @@ def classify(im_path,conf):
 
     # Detect
     det_boxes, det_probs, det_class = sess.run(
-     [model.det_boxes, model.det_probs, model.det_class],
-     feed_dict={model.image_input:[input_image], model.keep_prob: 1.0})
+        [model.det_boxes, model.det_probs, model.det_class],
+        feed_dict={model.image_input:[input_image]})
 
     # Filter
     final_boxes, final_probs, final_class = model.filter_prediction(
@@ -102,7 +104,8 @@ def classify(im_path,conf):
 
 
 # Compute intersection over union of b1 = (x1_c, y1_c, l1, w1) and b2 = (x2_c, y2_c, l2, w2)
-def iou((x1_c, y1_c, l1, w1), (x2_c, y2_c, l2, w2)):
+
+def get_area_cap((x1_c, y1_c, l1, w1), (x2_c, y2_c, l2, w2)):
     left_1 = x1_c - (l1/2)
     right_1 = x1_c + (l1/2)
     top_1 = y1_c - (w1/2)
@@ -120,30 +123,23 @@ def iou((x1_c, y1_c, l1, w1), (x2_c, y2_c, l2, w2)):
     area_1 = l1*w1
     area_2 = l2*w2
     area_cap = (right_cap-left_cap)*(bot_cap-top_cap)
+
+    return max(area_cap,0)
+
+
+def iou((x1_c, y1_c, l1, w1), (x2_c, y2_c, l2, w2)):
+
+    area_1 = l1*w1
+    area_2 = l2*w2
+    area_cap = get_area_cap((x1_c, y1_c, l1, w1), (x2_c, y2_c, l2, w2))
 
     return area_cap/(area_1+area_2-area_cap)
 
 
-
 def iomin((x1_c, y1_c, l1, w1), (x2_c, y2_c, l2, w2)):
-    left_1 = x1_c - (l1/2)
-    right_1 = x1_c + (l1/2)
-    top_1 = y1_c - (w1/2)
-    bot_1 = y1_c + (w1/2)
-    left_2 = x2_c - (l2/2)
-    right_2 = x2_c + (l2/2)
-    top_2 = y2_c - (w2/2)
-    bot_2 = y2_c + (w2/2)
-
-    left_cap = max(left_1, left_2)
-    right_cap = min(right_1, right_2)
-    top_cap = max(top_1, top_2)
-    bot_cap = min(bot_1, bot_2)
-
     area_1 = l1*w1
     area_2 = l2*w2
-    area_cap = (right_cap-left_cap)*(bot_cap-top_cap)
-    
+    area_cap = get_area_cap((x1_c, y1_c, l1, w1), (x2_c, y2_c, l2, w2))
     min_area = min(area_1, area_2)
 
     return area_cap / min_area
