@@ -116,3 +116,29 @@ def iomin((x1_c, y1_c, l1, w1), (x2_c, y2_c, l2, w2)):
     min_area = min(area_1, area_2)
 
     return area_cap / float(min_area)
+
+def save_image(img, file_name, path_synth_set):
+    '''Save image and label'''
+
+    img_file_name = path_synth_set + 'images/' + file_name + '.png'
+    img.save(img_file_name)
+
+
+def save_label(ground_boxes, file_name, path_synth_set):
+    '''Save label'''
+
+    f = open(path_synth_set + 'labels/' + file_name + '.txt', 'w')
+
+    if len(ground_boxes) > 0:
+        for box in ground_boxes[:-1]:
+            label = [0,0,0] + box_2_kitti_format(box) + [0,0,0,0,0,0,0]
+            label = list(map(str, label))
+            label = " ".join(label)
+            label  = "Car " + label + "\n"
+            f.write(label)  # python will convert \n to os.linesep
+        label = [0,0,0] + box_2_kitti_format(ground_boxes[-1]) + [0,0,0,0,0,0,0]
+        label = list(map(str, label))
+        label = " ".join(label)
+        label  = "Car " + label
+        f.write(label)  # python will convert \n to os.linesep
+    f.close()
