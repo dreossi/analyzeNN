@@ -13,9 +13,9 @@ class KDTree:
     def add(self, pt, config=True):
         '''Add point (in a very inefficient way)'''
         if self.tree == None:
-            self.tree = spatial.KDTree([pt])
+            self.tree = spatial.cKDTree([pt])
         else:
-            self.tree = spatial.KDTree(np.append(self.tree.data,[pt],axis=0))
+            self.tree = spatial.cKDTree(np.append(self.tree.data,[pt],axis=0))
 
 
     def query(self, pt, config=True):

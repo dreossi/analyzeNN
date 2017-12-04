@@ -117,17 +117,17 @@ def iomin((x1_c, y1_c, l1, w1), (x2_c, y2_c, l2, w2)):
 
     return area_cap / float(min_area)
 
-def save_image(img, file_name, path_synth_set):
+def save_image(img, file_name, path_data_set):
     '''Save image and label'''
 
-    img_file_name = path_synth_set + 'images/' + file_name + '.png'
+    img_file_name = path_data_set + 'images/' + file_name + '.png'
     img.save(img_file_name)
 
 
-def save_label(ground_boxes, file_name, path_synth_set):
+def save_label(ground_boxes, file_name, path_data_set):
     '''Save label'''
 
-    f = open(path_synth_set + 'labels/' + file_name + '.txt', 'w')
+    f = open(path_data_set + 'labels/' + file_name + '.txt', 'w')
 
     if len(ground_boxes) > 0:
         for box in ground_boxes[:-1]:
