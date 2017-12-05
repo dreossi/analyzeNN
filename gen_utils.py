@@ -142,3 +142,20 @@ def save_label(ground_boxes, file_name, path_data_set):
         label  = "Car " + label
         f.write(label)  # python will convert \n to os.linesep
     f.close()
+
+
+def pad_sample(conf):
+    '''Covert config to list'''
+    MAX_NUM_CARS = 3
+    pad = MAX_NUM_CARS - len(conf[1])
+
+    pt = conf[0]                # background
+    pt += (conf[1] + [-1]*pad)  # car models
+    pt += (conf[2] + [-1]*pad)  # x
+    pt += (conf[3] + [-1]*pad)  # y
+    pt += conf[4]               # image params
+    pt += conf[5]
+    pt += conf[6]
+    pt += conf[7]
+
+    return pt
