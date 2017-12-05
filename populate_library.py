@@ -48,6 +48,12 @@ def populateLibrary():
     Lib.addRoad(ImageFile(Image.open("./pics/roads/tree_kitti.png"), "Tree Road"), coord(613, 166),coord(382, 314), coord(846, 314), [coord(617, 314)])         #70
     Lib.addRoad(ImageFile(Image.open("./pics/roads/trees_kitti.png"), "Trees Road"), coord(613, 166),coord(382, 314), coord(846, 314), [coord(617, 314)])       #71
 
+    Lib.addRoad(ImageFile(Image.open("./pics/roads/fields_kitti.png"), "Fields"), coord(613, 166),coord(382, 314), coord(846, 314), [coord(617, 314)])       #72
+    Lib.addRoad(ImageFile(Image.open("./pics/roads/construction_kitti.png"), "Construction Road"), coord(613, 166),coord(382, 314), coord(846, 314), [coord(617, 314)])       #73
+    Lib.addRoad(ImageFile(Image.open("./pics/roads/little_bridge_kitti.jpg"), "Little Bridge Road"), coord(613, 166),coord(382, 314), coord(846, 314), [coord(617, 314)])       #74
+    Lib.addRoad(ImageFile(Image.open("./pics/roads/parking_lot_kitti.png"), "Parking Lot Road"), coord(613, 166),coord(382, 314), coord(846, 314), [coord(617, 314)])       #75
+    Lib.addRoad(ImageFile(Image.open("./pics/roads/indoor_parking_kitti.png"), "Indoor Parking Road"), coord(613, 166),coord(382, 314), coord(846, 314), [coord(617, 314)])       #76
+
     # Populate the library with cars
     Lib.addCar(ImageFile(Image.open("./pics/cars/bmw_rear.png"), "BMW"))
     Lib.addCar(ImageFile(Image.open("./pics/cars/tesla_rear.png"), "Tesla"))
