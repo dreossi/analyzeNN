@@ -1,5 +1,5 @@
-from cnn_image_generation import *
-from cnn_image_generation.utils import *
+from image_generation_utils import *
+from image_mod_gen_utils import *
 from analysis_nn import *
 from update_library import *
 

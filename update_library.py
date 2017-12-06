@@ -5,7 +5,7 @@ using the new implementation
 
 import pickle
 import numpy as np
-from cnn_image_generation.lib_obj import *
+from lib_obj import *
 
 BACK_ORIENT = -np.pi/2
 FRONT_ORIENT = np.pi/2
@@ -64,6 +64,16 @@ road_images.append({'road_path':'./pics/roads/tree_kitti.png',\
                'road_type':'Tree Road', 'road_id':70, 'background_color': 'green, yellow', 'environment': 'forest'})
 road_images.append({'road_path':'./pics/roads/trees_kitti.png',\
                'road_type':'Trees Road', 'road_id':71, 'background_color': 'green', 'environment': 'forest'})
+road_images.append({'road_path':'./pics/roads/fields_kitti.png',\
+               'road_type':'Fields Road', 'road_id':72, 'background_color': 'green, brown', 'environment': 'forest, fields'})
+road_images.append({'road_path':'./pics/roads/construction_kitti.png',\
+               'road_type':'Construction Road', 'road_id':73, 'background_color': 'gray, brown', 'environment': 'city'})
+road_images.append({'road_path':'./pics/roads/little_bridge_kitti.jpg',\
+               'road_type':'Little Bridge', 'road_id':74, 'background_color': 'green, gray', 'environment': 'forest'})
+road_images.append({'road_path':'./pics/roads/parking_lot_kitti.png',\
+               'road_type':'Parking Lot', 'road_id':75, 'background_color': 'gray', 'environment': 'city, parking'})
+road_images.append({'road_path':'./pics/roads/indoor_parking_kitti.png',\
+               'road_type':'Indoor Parking Road', 'road_id':76, 'background_color': 'gray', 'environment': 'city, parking'})
 
 car_images = [{'car_path':'./pics/cars/bmw_kitti.png', 'type':'BMW Kitti', \
                'car_id':0, 'car_category': 'car', 'car_color': 'gray', 'car_orientation': BACK_ORIENT},
@@ -102,7 +112,21 @@ car_images = [{'car_path':'./pics/cars/bmw_kitti.png', 'type':'BMW Kitti', \
               {'car_path': './pics/cars/bmw_front_kitti.png', 'type': 'BMW Front Kitti', \
                'car_id':17, 'car_category': 'car', 'car_color': 'blue dark', 'car_orientation': FRONT_ORIENT },
               {'car_path': './pics/cars/suzuki_front_kitti.png', 'type': 'Suzuki Front Kitti', \
-               'car_id':18, 'car_category': 'jeep', 'car_color': 'red dark', 'car_orientation': FRONT_ORIENT }
+               'car_id':18, 'car_category': 'jeep', 'car_color': 'red dark', 'car_orientation': FRONT_ORIENT },
+              {'car_path': './pics/cars/volkswagen_golf_front_kitti.png', 'type': 'Volkswagen Golf Kitti', \
+               'car_id':19, 'car_category': 'car', 'car_color': 'blue light', 'car_orientation': FRONT_ORIENT },
+              {'car_path': './pics/cars/toyota_new_prius_front_kitti.png', 'type': 'Toyota New Prius Kitti', \
+               'car_id':20, 'car_category': 'car', 'car_color': 'gray', 'car_orientation': FRONT_ORIENT },
+              {'car_path': './pics/cars/volvo_rear_kitti.png', 'type': 'Volvo Kitti', \
+               'car_id':21, 'car_category': 'car', 'car_color': 'brown', 'car_orientation': BACK_ORIENT },
+              {'car_path': './pics/cars/porche_rear_kitti.png', 'type': 'Porche Kitti', \
+               'car_id':22, 'car_category': 'car', 'car_color': 'white', 'car_orientation': BACK_ORIENT },
+              {'car_path': './pics/cars/scania_front_kitti.png', 'type': 'Scania Kitti', \
+               'car_id':23, 'car_category': 'truck', 'car_color': 'white', 'car_orientation': FRONT_ORIENT },
+              {'car_path': './pics/cars/ford_truck_rear_kitti.png', 'type': 'Ford Kitti', \
+               'car_id':24, 'car_category': 'truck', 'car_color': 'white', 'car_orientation': BACK_ORIENT },
+              {'car_path': './pics/cars/chevrolet_truck_rear_kitti.png', 'type': 'Chevrolet Kitti', \
+               'car_id':25, 'car_category': 'truck', 'car_color': 'red', 'car_orientation': BACK_ORIENT }
               ]
 
 configs_file = 'scene_configs_py2'
@@ -135,5 +159,3 @@ def update_library():
         Library.add_foregrounds(im_data=im_data,add_details=car)
 
     return Library
-
-
