@@ -80,4 +80,13 @@ def populateLibrary():
     Lib.addCar(ImageFile(Image.open("./pics/cars/bmw_front_kitti.png"), "BMW Kitti"))
     Lib.addCar(ImageFile(Image.open("./pics/cars/suzuki_front_kitti.png"), "Suzuki Kitti"))
 
+    Lib.addCar(ImageFile(Image.open("./pics/cars/volkswagen_golf_front_kitti.png"), "Volkswagen Golf Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/toyota_new_prius_front_kitti.png"), "Toyota New Prius Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/volvo_rear_kitti.png"), "Volvo Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/porche_rear_kitti.png"), "Porche Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/scania_front_kitti.png"), "Scania Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/ford_truck_rear_kitti.png"), "Ford Kitti"))
+    Lib.addCar(ImageFile(Image.open("./pics/cars/chevrolet_truck_rear_kitti.png"), "Chevrolet Kitti"))
+
+
     return Lib
