@@ -77,11 +77,11 @@ road_images.append({'road_path':'./pics/roads/indoor_parking_kitti.png',\
 
 car_images = [{'car_path':'./pics/cars/bmw_kitti.png', 'type':'BMW Kitti', \
                'car_id':0, 'car_category': 'car', 'car_color': 'gray', 'car_orientation': BACK_ORIENT},
-              {'car_path':'./pics/cars/suzuki_kitti.png','type':'Suzuki Kitti',\
+              {'car_path':'./pics/cars/suzuki_rear_kitti.png','type':'Suzuki Kitti',\
                 'car_id':1, 'car_category': 'jeep', 'car_color': 'red dark', 'car_orientation': BACK_ORIENT},
-              {'car_path':'./pics/cars/tesla_kitti.png', 'type':'Tesla Kitti', \
-               'car_id':2, 'car_category': 'car', 'car_color': 'blue dark', 'car_orientation': BACK_ORIENT},
-              {'car_path':'./pics/cars/fiat_kitti.png', 'type':'Fiat Kitti',\
+              {'car_path':'./pics/cars/tesla_rear_kitti.png', 'type':'Tesla Kitti', \
+               'car_id':2, 'car_category': 'car', 'car_color': 'white', 'car_orientation': BACK_ORIENT},
+              {'car_path':'./pics/cars/fiat_front_kitti.png', 'type':'Fiat Kitti',\
                'car_id':3, 'car_category': 'car', 'car_color': 'green', 'car_orientation': BACK_ORIENT},
               {'car_path':'./pics/cars/honda_kitti.png', 'type':'Honda Kitti',\
                'car_id':4, 'car_category': 'car', 'car_color': 'gray', 'car_orientation': BACK_ORIENT},
@@ -108,7 +108,7 @@ car_images = [{'car_path':'./pics/cars/bmw_kitti.png', 'type':'BMW Kitti', \
               {'car_path': './pics/cars/jeep_cherokee_front_kitti.png', 'type': 'Jeep Cherokee Front Kitti', \
                'car_id':15, 'car_category': 'jeep', 'car_color': 'cream', 'car_orientation': FRONT_ORIENT },
               {'car_path': './pics/cars/fiat_front_kitti.png', 'type': 'Fiat Front Kitti', \
-               'car_id':16, 'car_category': 'car', 'car_color': 'yellow', 'car_orientation': FRONT_ORIENT },
+               'car_id':16, 'car_category': 'car', 'car_color': 'blue', 'car_orientation': FRONT_ORIENT },
               {'car_path': './pics/cars/bmw_front_kitti.png', 'type': 'BMW Front Kitti', \
                'car_id':17, 'car_category': 'car', 'car_color': 'blue dark', 'car_orientation': FRONT_ORIENT },
               {'car_path': './pics/cars/suzuki_front_kitti.png', 'type': 'Suzuki Front Kitti', \
@@ -126,7 +126,24 @@ car_images = [{'car_path':'./pics/cars/bmw_kitti.png', 'type':'BMW Kitti', \
               {'car_path': './pics/cars/ford_truck_rear_kitti.png', 'type': 'Ford Kitti', \
                'car_id':24, 'car_category': 'truck', 'car_color': 'white', 'car_orientation': BACK_ORIENT },
               {'car_path': './pics/cars/chevrolet_truck_rear_kitti.png', 'type': 'Chevrolet Kitti', \
-               'car_id':25, 'car_category': 'truck', 'car_color': 'red', 'car_orientation': BACK_ORIENT }
+               'car_id':25, 'car_category': 'truck', 'car_color': 'red', 'car_orientation': BACK_ORIENT },
+              {'car_path': './pics/cars/mercedes_rear_kitti.png', 'type': 'Mercedes Kitti', \
+               'car_id':26, 'car_category': 'car', 'car_color': 'black', 'car_orientation': BACK_ORIENT },
+              {'car_path': './pics/cars/tesla_front_kitti.png', 'type': 'Tesla Kitti', \
+               'car_id':27, 'car_category': 'car', 'car_color': 'black', 'car_orientation': FRONT_ORIENT },
+              {'car_path': './pics/cars/mercedes_front_kitti.png', 'type': 'Mercedes Kitti', \
+               'car_id':28, 'car_category': 'jeep', 'car_color': 'gray', 'car_orientation': FRONT_ORIENT },
+              {'car_path': './pics/cars/mazda_front_kitti.png', 'type': 'Mazda Kitti', \
+               'car_id':29, 'car_category': 'car', 'car_color': 'blue light', 'car_orientation': FRONT_ORIENT },
+              {'car_path': './pics/cars/mazda_rear_kitti.png', 'type': 'Mazda Kitti', \
+               'car_id':30, 'car_category': 'car', 'car_color': 'gray', 'car_orientation': BACK_ORIENT },
+              {'car_path': './pics/cars/scion_rear_kitti.png', 'type': 'Scion Kitti', \
+               'car_id':31, 'car_category': 'car', 'car_color': 'orange', 'car_orientation': BACK_ORIENT },
+              {'car_path': './pics/cars/scion_front_kitti.png', 'type': 'Scion Kitti', \
+               'car_id':32, 'car_category': 'car', 'car_color': 'orange', 'car_orientation': FRONT_ORIENT },
+              {'car_path': './pics/cars/fiat_abarth_front_kitti.png', 'type': 'Fiat Abarth Kitti', \
+               'car_id':33, 'car_category': 'car', 'car_color': 'orange', 'car_orientation': FRONT_ORIENT },
+
               ]
 
 configs_file = 'scene_configs_py2'
