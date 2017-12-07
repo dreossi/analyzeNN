@@ -142,8 +142,8 @@ car_images = [{'car_path':'./pics/cars/bmw_gray_front_kitti.png', 'type':'BMW Ki
                'car_id':21, 'car_category': 'car', 'car_color': 'brown', 'car_orientation': BACK_ORIENT },
               {'car_path': './pics/cars/porche_rear_kitti.png', 'type': 'Porche Kitti', \
                'car_id':22, 'car_category': 'car', 'car_color': 'white', 'car_orientation': BACK_ORIENT },
-              {'car_path': './pics/cars/scania_front_kitti.png', 'type': 'Scania Kitti', \
-               'car_id':23, 'car_category': 'truck', 'car_color': 'white', 'car_orientation': FRONT_ORIENT },
+              {'car_path': './pics/cars/corvette_front_kitti.png', 'type': 'Corvette Kitti', \
+               'car_id':23, 'car_category': 'car', 'car_color': 'yellow', 'car_orientation': FRONT_ORIENT },
               {'car_path': './pics/cars/ford_truck_rear_kitti.png', 'type': 'Ford Kitti', \
                'car_id':24, 'car_category': 'truck', 'car_color': 'white', 'car_orientation': BACK_ORIENT },
               {'car_path': './pics/cars/chevrolet_truck_rear_kitti.png', 'type': 'Chevrolet Kitti', \
@@ -164,7 +164,12 @@ car_images = [{'car_path':'./pics/cars/bmw_gray_front_kitti.png', 'type':'BMW Ki
                'car_id':32, 'car_category': 'car', 'car_color': 'orange', 'car_orientation': FRONT_ORIENT },
               {'car_path': './pics/cars/fiat_abarth_front_kitti.png', 'type': 'Fiat Abarth Kitti', \
                'car_id':33, 'car_category': 'car', 'car_color': 'orange', 'car_orientation': FRONT_ORIENT },
-
+              {'car_path': './pics/cars/volkswagen_beetle_front_kitti.png', 'type': 'Volkswagen Beetle Kitti', \
+               'car_id':34, 'car_category': 'car', 'car_color': 'red dark', 'car_orientation': FRONT_ORIENT },
+              {'car_path': './pics/cars/smart_rear_kitti.png', 'type': 'Smart Kitti', \
+               'car_id':35, 'car_category': 'car', 'car_color': 'black', 'car_orientation': BACK_ORIENT },
+              {'car_path': './pics/cars/smart_front_kitti.png', 'type': 'Smart Kitti', \
+               'car_id':36, 'car_category': 'car', 'car_color': 'blue light', 'car_orientation': FRONT_ORIENT }
               ]
 
 configs_file = 'scene_configs_py2'
