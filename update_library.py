@@ -74,8 +74,29 @@ road_images.append({'road_path':'./pics/roads/parking_lot_kitti.png',\
                'road_type':'Parking Lot', 'road_id':75, 'background_color': 'gray', 'environment': 'city, parking'})
 road_images.append({'road_path':'./pics/roads/indoor_parking_kitti.png',\
                'road_type':'Indoor Parking Road', 'road_id':76, 'background_color': 'gray', 'environment': 'city, parking'})
+road_images.append({'road_path':'./pics/roads/freeway_moto_kitti.jpg',\
+               'road_type':'Freeway Moto Road', 'road_id':77, 'background_color': 'black, brow', 'environment': 'desert, freeway'})
+road_images.append({'road_path':'./pics/roads/freeway_kitti.jpg',\
+               'road_type':'Freeway Road', 'road_id':78, 'background_color': 'black, blue, green', 'environment': 'freeway'})
+road_images.append({'road_path':'./pics/roads/snow_kitti.jpg',\
+               'road_type':'Snow Road', 'road_id':79, 'background_color': 'white', 'environment': 'snow, forest'})
+road_images.append({'road_path':'./pics/roads/icy_kitti.jpg',\
+               'road_type':'Icy Road', 'road_id':80, 'background_color': 'white', 'environment': 'snow, forest'})
+road_images.append({'road_path':'./pics/roads/night_road_kitti.jpg',\
+               'road_type':'Night Road', 'road_id':81, 'background_color': 'black', 'environment': 'fields'})
+road_images.append({'road_path':'./pics/roads/night_bridge_kitti.jpg',\
+               'road_type':'Night Bridge Road', 'road_id':82, 'background_color': 'black', 'environment': 'bridge'})
+road_images.append({'road_path':'./pics/roads/in_tunnel_kitti.jpg',\
+               'road_type':'In Tunnel Road', 'road_id':83, 'background_color': 'gray, blue, red', 'environment': 'tunnel'})
+road_images.append({'road_path':'./pics/roads/rainy_bridge_kitti.jpg',\
+               'road_type':'Rainy Bridge Road', 'road_id':84, 'background_color': 'gray, blue', 'environment': 'bridge'})
+road_images.append({'road_path':'./pics/roads/joshua_tree_kitti.jpg',\
+               'road_type':'Joshua Tree Road', 'road_id':85, 'background_color': 'brown, green, blue', 'environment': 'desert'})
+road_images.append({'road_path':'./pics/roads/yosemite_kitti.png',\
+               'road_type':'Yosemite Road', 'road_id':86, 'background_color': 'gray, green, blue', 'environment': 'forest'})
 
-car_images = [{'car_path':'./pics/cars/bmw_kitti.png', 'type':'BMW Kitti', \
+
+car_images = [{'car_path':'./pics/cars/bmw_gray_front_kitti.png', 'type':'BMW Kitti', \
                'car_id':0, 'car_category': 'car', 'car_color': 'gray', 'car_orientation': BACK_ORIENT},
               {'car_path':'./pics/cars/suzuki_rear_kitti.png','type':'Suzuki Kitti',\
                 'car_id':1, 'car_category': 'jeep', 'car_color': 'red dark', 'car_orientation': BACK_ORIENT},
