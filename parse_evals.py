@@ -1,9 +1,10 @@
 '''Extarct infos from evaluation files'''
 
-eval_dir="/home/tommaso/analyzeNN/data/train_0/eval/test_2"
+eval_dir="/home/tommaso/analyzeNN/data/train_0/eval/test_m_0_2"
 eval_file="/home/tommaso/analyzeNN/data/train_0/eval/test_1/200.txt"
 
 import matplotlib.pyplot as plt
+import numpy as np
 
 
 def get_data(file_name):
@@ -23,15 +24,17 @@ def get_data_dir(dir_path, checkpoints):
     easys = []
     mediums = []
     hards = []
+    avgs = []
     for checkpoint in checkpoints:
         file_name = str(checkpoint) + '.txt'
         easy, medium, hard = get_data(dir_path + '/' + file_name)
         easys += [easy]
         mediums += [medium]
         hards += [hard]
-    return easys, mediums, hards
+        avgs += [np.mean([easy, medium, hard])]
+    return easys, mediums, hards, avgs
 
-checkpoints = range(0,3000,200)
-easys, mediums, hards = get_data_dir(eval_dir, checkpoints)
-plt.plot(checkpoints, easys, 'r-', checkpoints, mediums, 'g-', checkpoints, hards, 'b-',)
+checkpoints = range(0,4600,200)
+easys, mediums, hards, avgs = get_data_dir(eval_dir, checkpoints)
+plt.plot(checkpoints, easys, 'r-', checkpoints, mediums, 'g-', checkpoints, avgs, 'b-',)
 plt.show()

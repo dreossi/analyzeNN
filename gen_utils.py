@@ -159,3 +159,62 @@ def pad_sample(conf):
     pt += conf[7]
 
     return pt
+
+def check_perspective(xs, ys, x_eps, y_eps):
+    '''Check distance between sampled points'''
+    for yi in range(len(ys)):
+        for yj in range(yi+1,len(ys)):
+            if abs(ys[yi] - ys[yj]) < y_eps:
+                if abs(xs[yi] - xs[yj]) < x_eps:
+                    return False
+    return True
+
+
+def pred_2_detect(preds, gt, iou_tresh):
+    '''Assign predictions to detections'''
+    detetctions = []
+    for p in preds:
+        detects = []
+        for g in gt:
+            detects += [iou(p, g) > iou_tresh]
+        detetctions += [detects]
+    assigns = []
+    for d in detetctions:
+        a = -1
+        for i in range(len(d)):
+            if d[i]:
+                a = i
+        assigns += [a]
+
+    assigns = duplicate_false_positive(assigns, len(gt))
+    return assigns
+
+def duplicate_false_positive(detects, n_gt):
+    '''Correct double false positives'''
+    for i in range(n_gt):
+        first_occ = True
+        for j in range(len(detects)):
+            if i == detects[j]:
+                if first_occ:
+                    first_occ = False
+                else:
+                    detects[j] = -1
+    return detects
+
+
+def prec_rec(detects, n_gt):
+    '''Compute precision and recall'''
+
+    tp = sum(d != -1 for d in detects)
+    fp = sum(d == -1 for d in detects)
+    fn = sum(g not in detects for g in range(n_gt))
+
+    prec = tp/float(tp+fp)
+    rec = tp/float(tp+fn)
+
+    return prec, rec
+
+
+def precision_recall(preds, gt_boxes, iou_tresh):
+    detects = pred_2_detect(preds, gt_boxes, iou_tresh)
+    return prec_rec(detects, len(gt_boxes))
