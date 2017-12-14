@@ -76,6 +76,20 @@ def box_2_kitti_format(box):
     bot = int(y + h/2)
     return [left,top,right,bot]
 
+def kitti_2_box_format(label):
+
+    '''Transform KITTI label format to box'''
+    xl = label[0]
+    yt = label[1]
+    xr = label[2]
+    yb = label[3]
+    w = xr - xl
+    h = yb - yt
+    xc = int(xl + w/2)
+    yc = int(yt + h/2)
+    return [xc, yc, w, h]
+
+
 def get_area_cap((x1_c, y1_c, l1, w1), (x2_c, y2_c, l2, w2)):
     left_1 = x1_c - (l1/2)
     right_1 = x1_c + (l1/2)
