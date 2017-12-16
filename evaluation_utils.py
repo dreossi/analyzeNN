@@ -9,6 +9,8 @@ PREFIX_LABELS = '/home/tommaso/squeezeDet/data/KITTI/training/label_2/'
 PREFIX_IMAGES = '/home/tommaso/squeezeDet/data/KITTI/training/image_2/'
 CHECKPOINT_DIR = '/home/tommaso/analyzeNN/data/train_0/checkpoint/train/'
 
+NN_PROB_THRESH = 0.5
+
 def read_label(file_name):
     '''Read label from file (KITTI format)'''
     with open(file_name, "r") as f:
@@ -43,7 +45,7 @@ def predict(net, image_set):
 
     predictions = dict()
     for i in images:
-        (boxes, probs, _)= nn.classify(PREFIX_IMAGES + i + '.png', net)
+        (boxes, probs, _)= nn.classify(PREFIX_IMAGES + i + '.png', net, NN_PROB_THRESH)
         thresh_boxes = []
         for box, prob in zip(boxes, probs):
             if prob > 0.5:
@@ -66,6 +68,7 @@ def average_precision(gt, prediction, iou_thresh):
     for pred in prediction:
         detect = False
         for i in range(len(gt)):
+            print(iou(pred, gt[i]))
             if iou(pred, gt[i]) > iou_thresh:
                 detect = True
                 if not alread_detected[i]:
@@ -124,10 +127,14 @@ def eval_set(net, image_set):
     for image in gt_labels:
         gt = gt_labels[image]
         pred = predictions[image]
-        ap, rec = average_precision(gt, pred, 0.5)
+        ap, rec = average_precision(gt, pred, 0.4)
         tot_ap += ap
         tot_rec += rec
+        #print(image + ': ' + str(ap) + ', ' + str(rec) )
+        #print(gt)
+        #print(pred)
         #plot_boxes(image, gt,pred)
+
     tot_ap = tot_ap/float(len(gt_labels))
     tot_rec = tot_rec/float(len(gt_labels))
 
@@ -146,7 +153,11 @@ def eval_train(checkpoint_list, image_set):
     return results
 
 checkpoint_list = range(0,5000,200)
-image_set = '/home/tommaso/squeezeDet/data/KITTI/ImageSets/test_mix.txt'
+image_set = '/home/tommaso/analyzeNN/data/train_0/test_mix.txt'
 
-res = eval_train(checkpoint_list, image_set)
-plot_results(res)
+# res = eval_train(checkpoint_list, image_set)
+# plot_results(res)
+#
+cp_path = CHECKPOINT_DIR + 'model.ckpt-500'
+net = nn.init(cp_path)
+print(eval_set(net, image_set))

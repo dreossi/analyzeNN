@@ -18,6 +18,8 @@ import sys
 ROOT_PATH = './squeezeDet/'
 sys.path.insert(0, ROOT_PATH + 'src')
 
+PROB_THRESH = 0.5
+
 from config import *
 from train import _draw_box
 from nets import *
@@ -50,7 +52,7 @@ def init(checkpoint_path):
 
 
 
-def classify(im_path,conf):
+def classify(im_path, conf, prob_thresh):
 
     (sess,mc,model) = conf
     im = cv2.imread(im_path)
@@ -71,7 +73,7 @@ def classify(im_path,conf):
     #                   if final_probs[idx] > mc.PLOT_PROB_THRESH]
 
     keep_idx = [idx for idx in range(len(final_probs)) \
-                if final_probs[idx] > 0.1]
+                if final_probs[idx] > prob_thresh]
 
     final_boxes = [final_boxes[idx] for idx in keep_idx]
     final_probs = [final_probs[idx] for idx in keep_idx]
@@ -83,21 +85,21 @@ def classify(im_path,conf):
     #     res.append((label,confidence,box))
     # return res
 
-    cls2clr = {
-        'car': (255, 191, 0),
-        'cyclist': (0, 191, 255),
-        'pedestrian':(255, 0, 191)
-    }
-    # Draw boxes
-    _draw_box(
-        im, final_boxes,
-        [mc.CLASS_NAMES[idx]+': (%.2f)'% prob \
-            for idx, prob in zip(final_class, final_probs)],
-        cdict=cls2clr,
-    )
-
-    out_file_name = os.path.join('./', 'tmp.png')
-    cv2.imwrite(out_file_name, im)
+    # cls2clr = {
+    #     'car': (255, 191, 0),
+    #     'cyclist': (0, 191, 255),
+    #     'pedestrian':(255, 0, 191)
+    # }
+    # # Draw boxes
+    # _draw_box(
+    #     im, final_boxes,
+    #     [mc.CLASS_NAMES[idx]+': (%.2f)'% prob \
+    #         for idx, prob in zip(final_class, final_probs)],
+    #     cdict=cls2clr,
+    # )
+    #
+    # out_file_name = os.path.join('./', 'tmp.png')
+    # cv2.imwrite(out_file_name, im)
     #print ('Image detection output saved to {}'.format(out_file_name))
 
     return (final_boxes,final_probs,final_class)

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 export GPUID=0
-export TRAIN_SET="train_synth"
+export TRAIN_SET="train_0"
 export NET="squeezeDet"
 export TRAIN_DIR="/tmp/bichen/logs/SqueezeDet/"
 
@@ -17,39 +17,6 @@ then
   exit 0
 fi
 
-# while test $# -gt 0; do
-#   case "$1" in
-#     -h|--help)
-#       echo "Usage: ./scripts/train.sh [options]"
-#       echo " "
-#       echo "options:"
-#       echo "-h, --help                show brief help"
-#       echo "-net                      (squeezeDet|squeezeDet+|vgg16|resnet50)"
-#       echo "-gpu                      gpu id"
-#       echo "-train_dir                directory for training logs"
-#       exit 0
-#       ;;
-#     -net)
-#       export NET="$2"
-#       shift
-#       shift
-#       ;;
-#     -gpu)
-#       echo "INSIDE GPU"
-#       export GPUID="$2"
-#       shift
-#       shift
-#       ;;
-#     -train_dir)
-#       export TRAIN_DIR="$2"
-#       shift
-#       shift
-#       ;;
-#     *)
-#       break
-#       ;;
-#   esac
-# done
 
 for i in "$@"
 do
@@ -95,7 +62,7 @@ echo $TRAIN_SET
 python ./src/train.py \
   --dataset=KITTI \
   --pretrained_model_path=$PRETRAINED_MODEL_PATH \
-  --data_path=./data/KITTI \
+  --data_path=../data/train_0/train/mix/ \
   --image_set=$TRAIN_SET \
   --train_dir="$TRAIN_DIR/train" \
   --net=$NET \
