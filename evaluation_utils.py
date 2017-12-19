@@ -4,11 +4,19 @@ import squeezedet as nn
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 from PIL import Image
+import pickle
 
-PREFIX_LABELS = '/home/tommaso/squeezeDet/data/KITTI/training/label_2/'
-PREFIX_IMAGES = '/home/tommaso/squeezeDet/data/KITTI/training/image_2/'
-CHECKPOINT_DIR = '/home/tommaso/analyzeNN/data/train_0/checkpoint/train/'
+CHECKPOINT_DIR = './data/train_3/checkpoint/train/'
 
+PREFIX_LABELS = './data/train_0/mis/labels/'
+PREFIX_IMAGES = './data/train_0/mis/images/'
+image_set = './data/train_0/mis/test_mis.txt'
+
+# PREFIX_LABELS = './data/train_0/train/mix/labels/'
+# PREFIX_IMAGES = './data/train_0/train/mix/images/'
+# image_set = './data/train_0/train/mix/image_sets/test.txt'
+
+IOU_THRESH = 0.5
 NN_PROB_THRESH = 0.5
 
 def read_label(file_name):
@@ -45,12 +53,8 @@ def predict(net, image_set):
 
     predictions = dict()
     for i in images:
-        (boxes, probs, _)= nn.classify(PREFIX_IMAGES + i + '.png', net, NN_PROB_THRESH)
-        thresh_boxes = []
-        for box, prob in zip(boxes, probs):
-            if prob > 0.5:
-                thresh_boxes += [box]
-        predictions[i] = thresh_boxes
+        (boxes, probs, _) = nn.classify(PREFIX_IMAGES + i + '.png', net, NN_PROB_THRESH)
+        predictions[i] = boxes
 
     return predictions
 
@@ -68,7 +72,7 @@ def average_precision(gt, prediction, iou_thresh):
     for pred in prediction:
         detect = False
         for i in range(len(gt)):
-            print(iou(pred, gt[i]))
+            #print(iou(pred, gt[i]))
             if iou(pred, gt[i]) > iou_thresh:
                 detect = True
                 if not alread_detected[i]:
@@ -111,7 +115,7 @@ def plot_results(results):
     x = np.array(cps)[order]
     y1 = np.array(aps)[order]
     y2 = np.array(recs)[order]
-    plt.plot(x, y2, 'r', x, y1, 'g')
+    plt.plot(x, y2, 'r', x, y1, 'b')
     plt.show()
 
 
@@ -127,10 +131,10 @@ def eval_set(net, image_set):
     for image in gt_labels:
         gt = gt_labels[image]
         pred = predictions[image]
-        ap, rec = average_precision(gt, pred, 0.4)
+        ap, rec = average_precision(gt, pred, IOU_THRESH)
         tot_ap += ap
         tot_rec += rec
-        #print(image + ': ' + str(ap) + ', ' + str(rec) )
+        print(image + ': ' + str(ap) + ', ' + str(rec) )
         #print(gt)
         #print(pred)
         #plot_boxes(image, gt,pred)
@@ -152,12 +156,15 @@ def eval_train(checkpoint_list, image_set):
         results[cp] = (ap,recall)
     return results
 
-checkpoint_list = range(0,5000,200)
-image_set = '/home/tommaso/analyzeNN/data/train_0/test_mix.txt'
-
+# checkpoint_list = range(0,5250,250)
+#
 # res = eval_train(checkpoint_list, image_set)
+# pickle.dump( res, open( "save_mis_3.p", "wb" ) )
+#
 # plot_results(res)
 #
-cp_path = CHECKPOINT_DIR + 'model.ckpt-500'
-net = nn.init(cp_path)
-print(eval_set(net, image_set))
+#
+#
+# # cp_path = CHECKPOINT_DIR + 'model.ckpt-5000'
+# # net = nn.init(cp_path)
+# # eval_set(net, image_set)

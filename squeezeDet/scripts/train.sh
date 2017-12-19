@@ -4,6 +4,7 @@ export GPUID=0
 export TRAIN_SET="train_0"
 export NET="squeezeDet"
 export TRAIN_DIR="/tmp/bichen/logs/SqueezeDet/"
+export DATA_PATH=../data/train_0/train/
 
 if [ $# -eq 0 ]
 then
@@ -29,9 +30,12 @@ case $i in
   TRAIN_DIR="${i#*=}"
   shift
   ;;
-
  -train_set=*)
   TRAIN_SET="${i#*=}"
+  shift
+  ;;
+ -data_path=*)
+  DATA_PATH="${i#*=}"
   shift
   ;;
 esac
@@ -58,11 +62,12 @@ esac
 
 echo $TRAIN_DIR
 echo $TRAIN_SET
+echo $DATA_PATH
 
 python ./src/train.py \
   --dataset=KITTI \
   --pretrained_model_path=$PRETRAINED_MODEL_PATH \
-  --data_path=../data/train_0/train/mix/ \
+  --data_path=$DATA_PATH \
   --image_set=$TRAIN_SET \
   --train_dir="$TRAIN_DIR/train" \
   --net=$NET \
