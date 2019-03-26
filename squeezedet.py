@@ -79,27 +79,26 @@ def classify(im_path, conf, prob_thresh):
     final_probs = [final_probs[idx] for idx in keep_idx]
     final_class = [final_class[idx] for idx in keep_idx]
 
-    # # Extract labels + confidence values
-    # res = []
-    # for label, confidence, box in zip(final_class, final_probs, final_boxes):
-    #     res.append((label,confidence,box))
-    # return res
+    # Extract labels + confidence values
+    res = []
+    for label, confidence, box in zip(final_class, final_probs, final_boxes):
+        res.append((label,confidence,box))
+    return res
 
-    # cls2clr = {
-    #     'car': (255, 191, 0),
-    #     'cyclist': (0, 191, 255),
-    #     'pedestrian':(255, 0, 191)
-    # }
-    # # Draw boxes
-    # _draw_box(
-    #     im, final_boxes,
-    #     [mc.CLASS_NAMES[idx]+': (%.2f)'% prob \
-    #         for idx, prob in zip(final_class, final_probs)],
-    #     cdict=cls2clr,
-    # )
-    #
-    # out_file_name = os.path.join('./', 'tmp.png')
-    # cv2.imwrite(out_file_name, im)
-    #print ('Image detection output saved to {}'.format(out_file_name))
+#     cls2clr = {
+#         'car': (255, 191, 0),
+#         'cyclist': (0, 191, 255),
+#         'pedestrian':(255, 0, 191)
+#     }
+#     # Draw boxes
+#     _draw_box(
+#         im, final_boxes,
+#         [mc.CLASS_NAMES[idx]+': (%.2f)'% prob \
+#             for idx, prob in zip(final_class, final_probs)],
+#         cdict=cls2clr,
+#     )
+    
+#     out_file_name = os.path.join('./', 'out.png')
+#     cv2.imwrite(out_file_name, im)
+#     # print ('Image detection output saved to {}'.format(out_file_name))
 
-    return (final_boxes,final_probs,final_class)
